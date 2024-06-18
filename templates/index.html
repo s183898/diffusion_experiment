@@ -55,8 +55,8 @@
     <h1>Image Categorization</h1>
     <div class="container">
         <div class="image-container">
-            <img src="{{ image }}" alt="Image to categorize" style="max-width:100%; height:auto;">
-            <!-- <img src="{{ url_for('static', filename='images/' + image) }}" alt="Current Image"> -->
+            <!-- <img src="{{ image }}" alt="Image to categorize" style="max-width:100%; height:auto;"> -->
+            <img src="{{ url_for('static', filename='images/' + image) }}" alt="Current Image">
         </div>
         <div class="buttons-container">
             <form method="post" action="{{ url_for('index') }}">
