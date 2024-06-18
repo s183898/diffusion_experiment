@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Introduction</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            font-size: 1.2em;
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        h3 {
+            margin: 5px 0;
+        }
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            width: 80%;
+            margin: 20px 0;
+        }
+        .image-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 45%;
+        }
+        img {
+            max-width: 60%;
+            height: auto;
+            border: 2px solid #000;
+            margin-bottom: 10px;
+        }
+        .description {
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <h3>Rate "Quality" according to the prompt "a photo of a person" (i.e. photo-real)</h3>
+    <h3>Choose "Ethnicity" as closest match or unintelligible</h3>
+    <h3>Choose "Gender apperance" between 1-5, where 1 is feminine and 5 masculine, or unintelligible</h3>
+    <h3>Below are 3 examples of images:</h3>
+    <div class="image-container">
+        <div class="image-box">
+            <img src="static/bad.png" alt="Good Image">
+            <!-- <p class="description"> Quality: Poor </p>
+            <p class="description"> Ethnicity: Caucasian </p>
+            <p class="description"> Gender: 1-2 </p> -->
+        </div>
+        <div class="image-box">
+            <img src="static/fair_Female.png" alt="Good Image">
+            <!-- <p class="description"> Quality: Fair </p>
+            <p class="description"> Ethnicity: Caucasian </p>
+            <p class="description"> Gender: Female </p> -->
+        </div>
+        <div class="image-box">
+            <img src="static/good_male_black.png" alt="Bad Image">
+            <!-- <p class="description"> Quality: Excellent </p>
+            <p class="description"> Gender: Male </p>
+            <p class="description"> Ethnicity: Black </p> -->
+        </div>
+    </div>
+    <a href="{{ url_for('index') }}">Start</a>
+</body>
+</html>

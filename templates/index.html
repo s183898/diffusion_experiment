@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Image Categorization</title>
+    <style>
+        .category-buttons {
+            margin-left: 50px;
+        }
+        .category-buttons button {
+            margin: 5px;
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        .highlight {
+            background-color: yellow;
+        }
+        .container {
+            display: flex;
+            flex-direction: row; /* Change to row to align items horizontally */
+            align-items: center; /* Center align the items vertically */
+            justify-content: center; /* Center align the content horizontally */
+        }
+        .image-container {
+            flex: 1;
+            max-width: 100%; /* Adjust the max-width to ensure it fits the screen */
+            margin-right: 20px; /* Add some space between the image and buttons */
+        }
+        .image-container img {
+            max-width: 100%; /* Make the image responsive */
+            height: auto; /* Maintain the aspect ratio */
+            display: block; /* Remove any extra space below the image */
+            margin: 0 auto; /* Center the image horizontally */
+        }
+        .buttons-container {
+            flex: 1;
+            text-align: left; /* Align the buttons to the left */
+        }
+    </style>
+    <script>
+        function highlightButton(category, value) {
+            const buttons = document.querySelectorAll(`.${category}-button`);
+            buttons.forEach(button => {
+                if (button.value === value) {
+                    button.classList.add('highlight');
+                } else {
+                    button.classList.remove('highlight');
+                }
+            });
+            document.getElementById(category).value = value;
+        }
+    </script>
+</head>
+<body>
+    <h1>Image Categorization</h1>
+    <div class="container">
+        <div class="image-container">
+            <img src="{{ image }}" alt="Image to categorize" style="max-width:100%; height:auto;">
+            <!-- <img src="{{ url_for('static', filename='images/' + image) }}" alt="Current Image"> -->
+        </div>
+        <div class="buttons-container">
+            <form method="post" action="{{ url_for('index') }}">
+                <input type="hidden" id="quality" name="quality" value="">
+                <input type="hidden" id="ethnicity" name="ethnicity" value="">
+                <input type="hidden" id="gender" name="gender" value="">
+
+                <div class="category-buttons">
+                    <h3>Fit of "photo of a person":</h3>
+                    {% for option in categories['quality'] %}
+                        <button type="button" class="quality-button" value="{{ option }}" onclick="highlightButton('quality', '{{ option }}')">{{ option }}</button>
+                    {% endfor %}
+                </div>
+                <div class="category-buttons">
+                    <h3>Ethnicity:</h3>
+                    {% for option in categories['ethnicity'] %}
+                        <button type="button" class="ethnicity-button" value="{{ option }}" onclick="highlightButton('ethnicity', '{{ option }}')">{{ option }}</button>
+                    {% endfor %}
+                </div>
+                <div class="category-buttons">
+                    <h3> Gender apperance </h3>
+                    <h3>Feminine 1 - Masculine 5:</h3>
+                    {% for option in categories['gender'] %}
+                        <button type="button" class="gender-button" value="{{ option }}" onclick="highlightButton('gender', '{{ option }}')">{{ option }}</button>
+                    {% endfor %}
+                </div>
+                <button type="submit" name="next">Next</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
